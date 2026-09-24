@@ -520,21 +520,24 @@
                 gap: 28px; 
                 text-align: center; 
             }
-            /* Đưa phần chữ (.intro-content) xuống dưới ảnh nền (.intro-portrait-wrapper) */
+            /* Đưa ảnh thẻ lên trên (order: 1), và phần chữ xuống dưới ảnh nền (order: 2) */
             .intro-portrait-wrapper { order: 1; }
             .intro-content { 
                 order: 2; 
                 align-items: center; 
                 text-align: center; 
             }
-            .portrait-img-card { height: 380px; max-width: 320px; margin: 0 auto; }
+            .portrait-img-card { height: 380px; max-width: 100%; margin: 0 auto; }
             .intro-title { font-size: 2rem; line-height: 1.3; }
             .intro-subtitle { font-size: 0.95rem; }
             .intro-actions { flex-direction: column; width: 100%; gap: 12px; }
             .btn-cta-primary, .btn-cta-secondary { width: 100%; text-align: center; }
 
             .section-title { font-size: 1.6rem; }
-            .projects-grid { grid-template-columns: 1fr; padding: 0 16px; gap: 20px; }
+            /* Phóng to card sản phẩm full chiều ngang màn hình điện thoại vừa khít */
+            .projects-grid { grid-template-columns: 100%; padding: 0 16px; gap: 20px; }
+            .project-card { width: 100%; }
+            
             .filter-container { max-width: 90vw; padding: 4px; gap: 4px; }
             .filter-btn { padding: 6px 14px; font-size: 0.78rem; }
 
@@ -672,197 +675,5 @@
         </div>
     </footer>
 
-    <script>
-        const CONFIG_DATA = [
-            {
-                id: 'p1', category: 'Branding', title: 'Thương Hiệu Thời Trang', client: 'AURA Fashion', year: '2025',
-                desc: 'Xây dựng hệ thống nhận diện thương hiệu cao cấp cho dòng thời trang bền vững.', coverImg: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200',
-                items: [
-                    { name: 'Logo', img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600' },
-                    { name: 'Màu sắc & Font', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600' },
-                    { name: 'Packaging', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1600' },
-                    { name: 'Social Post', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1600' }
-                ]
-            },
-            {
-                id: 'p2', category: 'Packaging', title: 'Thương Hiệu Mỹ Phẩm', client: 'Glow Cosmetics', year: '2025',
-                desc: 'Thiết kế bao bì dòng sản phẩm chăm sóc da thuần chay cao cấp.', coverImg: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200',
-                items: [
-                    { name: 'Bao bì chính', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600' },
-                    { name: 'Nhãn mác', img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=1600' }
-                ]
-            },
-            {
-                id: 'p3', category: 'Branding', title: 'Nhận Diện Quán Cafe', client: 'Nox Specialty Coffee', year: '2025',
-                desc: 'Thiết kế thương hiệu đậm chất tối giản, phong cách công nghiệp dành cho chuỗi quán cafe.', coverImg: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200',
-                items: [
-                    { name: 'Logo & Guideline', img: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600' },
-                    { name: 'Ly & Đồng phục', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1600' }
-                ]
-            },
-            {
-                id: 'p4', category: 'Editorial', title: 'Thiết Kế Tạp Chí Nghệ Thuật', client: 'Mono Magazine', year: '2024',
-                desc: 'Dàn trang, lựa chọn kiểu chữ và xử lý thị giác cho ấn phẩm nghệ thuật phát hành định kỳ.', coverImg: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200',
-                items: [
-                    { name: 'Bìa Tạp Chí', img: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1600' },
-                    { name: 'Bố cục trang nội dung', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1600' }
-                ]
-            },
-            {
-                id: 'p5', category: 'Packaging', title: 'Hộp Quà Tặng Trà Thượng Hạng', client: 'Lotus Tea', year: '2024',
-                desc: 'Giải pháp bao bì hộp cứng cao cấp kết hợp kỹ thuật ép kim và vân nổi.', coverImg: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=1200',
-                items: [
-                    { name: 'Hộp định hình', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=1600' },
-                    { name: 'Thiết kế nhãn trà', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=1600' }
-                ]
-            },
-            {
-                id: 'p6', category: 'UI/UX', title: 'Giao Diện Ứng Dụng Sáng Tạo', client: 'Kreativ App', year: '2024',
-                desc: 'Thiết kế giao diện ứng dụng di động dành cho cộng đồng nhà sáng tạo nội dung số.', coverImg: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200',
-                items: [
-                    { name: 'Màn hình chính', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600' },
-                    { name: 'Hệ thống Design System', img: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1600' }
-                ]
-            }
-        ];
-
-        // Khởi tạo các hàm cơ bản render giao diện
-        function renderProjects(filter = 'All') {
-            const grid = document.getElementById('projectsGrid');
-            grid.innerHTML = '';
-            
-            CONFIG_DATA.forEach((proj, index) => {
-                if(filter !== 'All' && proj.category !== filter) return;
-                
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.innerHTML = `
-                    <div class="card-number-stamp">0${index + 1}</div>
-                    <div class="project-img-wrapper" onclick="openLightbox('${proj.id}', 0)">
-                        <img src="${proj.coverImg}" class="project-img" alt="${proj.title}">
-                    </div>
-                    <div class="project-header">
-                        <span class="project-meta">${proj.category}</span>
-                        <h3 class="project-title" onclick="openModal('${proj.title}', '${proj.client}', '${proj.year}', '${proj.category}', '${proj.desc}')">${proj.title}</h3>
-                    </div>
-                    <div class="project-body">
-                        <ul class="items-list">
-                            ${proj.items.map((item, i) => `<li><button class="item-tag-btn" onclick="openLightbox('${proj.id}', ${i})">${item.name}</button></li>`).join('')}
-                        </ul>
-                        <button class="btn-case-study" onclick="openModal('${proj.title}', '${proj.client}', '${proj.year}', '${proj.category}', '${proj.desc}')">Xem Case Study</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Render bộ lọc
-        function renderFilters() {
-            const container = document.getElementById('filterContainer');
-            const categories = ['All', ...new Set(CONFIG_DATA.map(p => p.category))];
-            
-            container.innerHTML = categories.map((cat, idx) => `
-                <button class="filter-btn ${idx === 0 ? 'active' : ''}" onclick="filterCategory('${cat}', this)">${cat}</button>
-            `).join('');
-        }
-
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderProjects(cat);
-        }
-
-        function scrollToTop(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function setFullTheme(color, bgDark, ambientGrad) {
-            document.documentElement.style.setProperty('--accent-orange', color);
-            document.documentElement.style.setProperty('--bg-dark', bgDark);
-            document.documentElement.style.setProperty('--bg-ambient-gradient', ambientGrad);
-        }
-
-        function toggleLightDarkMode() {
-            const html = document.documentElement;
-            const btn = document.getElementById('modeToggleBtn');
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                btn.textContent = '🌙 Tối';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                btn.textContent = '☀️ Sáng';
-            }
-        }
-
-        // Modal Controls
-        function openModal(title, client, year, category, desc) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalClient').textContent = client;
-            document.getElementById('modalYear').textContent = year;
-            document.getElementById('modalCategory').textContent = category;
-            document.getElementById('modalDesc').textContent = desc;
-            document.getElementById('caseStudyModal').classList.add('active');
-        }
-        function closeModal() {
-            document.getElementById('caseStudyModal').classList.remove('active');
-        }
-
-        // Lightbox đơn giản để trang chạy hoàn thiện
-        let currentProjId = null, currentIndex = 0, currentScale = 1;
-        function openLightbox(projId, itemIndex) {
-            currentProjId = projId;
-            currentIndex = itemIndex;
-            currentScale = 1;
-            updateLightboxContent();
-            document.getElementById('lightbox').classList.add('active');
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-        function updateLightboxContent() {
-            const proj = CONFIG_DATA.find(p => p.id === currentProjId);
-            if(!proj) return;
-            const item = proj.items[currentIndex];
-            document.getElementById('lightboxImg').src = item.img;
-            document.getElementById('lightboxCaption').textContent = item.name;
-            document.getElementById('lightboxImg').style.transform = `scale(${currentScale})`;
-            
-            // Render thumbs
-            const thumbsContainer = document.getElementById('lightboxThumbs');
-            thumbsContainer.innerHTML = proj.items.map((it, idx) => `
-                <img src="${it.img}" class="thumb-img ${idx === currentIndex ? 'active' : ''}" onclick="switchLightboxItem(${idx})">
-            `).join('');
-        }
-        function switchLightboxItem(idx) {
-            currentIndex = idx;
-            currentScale = 1;
-            updateLightboxContent();
-        }
-        function changeLightboxImage(direction) {
-            const proj = CONFIG_DATA.find(p => p.id === currentProjId);
-            if(!proj) return;
-            currentIndex = (currentIndex + direction + proj.items.length) % proj.items.length;
-            currentScale = 1;
-            updateLightboxContent();
-        }
-        function adjustZoom(amount) {
-            currentScale = Math.max(1, Math.min(3, currentScale + amount));
-            document.getElementById('lightboxImg').style.transform = `scale(${currentScale})`;
-        }
-        function resetZoom() {
-            currentScale = 1;
-            document.getElementById('lightboxImg').style.transform = `scale(1)`;
-        }
-        function handleBackgroundClick(e) {
-            if(e.target.id === 'lightbox') closeLightbox();
-        }
-
-        // Chạy lần đầu
-        window.onload = () => {
-            renderFilters();
-            renderProjects('All');
-        };
-    </script>
 </body>
 </html>
