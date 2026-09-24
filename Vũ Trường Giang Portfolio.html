@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vũ Trường Giang Portfolio</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Mặc định Chế độ Tối (Dark Mode) & Tone Xanh Dương */
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(15, 23, 42, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --ios-glass: rgba(15, 23, 42, 0.8);
+            
+            --border-subtle: rgba(56, 189, 248, 0.15);
+            --border-strong: rgba(56, 189, 248, 0.35);
+            
+            --accent-orange: #38bdf8;
+            --accent-orange-hover: #0284c7;
+            --accent-amber-glow: rgba(56, 189, 248, 0.25);
+            
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            
+            --tag-bg: #121a2e;
+            --tag-text: #94a3b8;
+
+            --social-btn-bg: #121a2e;
+            --social-btn-text: #f8fafc;
+
+            /* Lightbox Theme Dark Variables */
+            --lightbox-overlay-bg: rgba(2, 6, 23, 0.88);
+            --lightbox-btn-bg: rgba(15, 23, 42, 0.8);
+            --lightbox-btn-color: #fff;
+            --lightbox-caption-bg: rgba(15, 23, 42, 0.9);
+            
+            --font-main: 'Inter', -apple-system, sans-serif;
+            --radius-card: 20px;
+            --radius-pill: 999px;
+        }
+
+        /* Định nghĩa Chế độ Sáng (Light Mode) */
+        [data-theme="light"] {
+            --bg-dark: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --ios-glass: rgba(255, 255, 255, 0.85);
+            
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-strong: rgba(0, 0, 0, 0.2);
+            
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+
+            --tag-bg: #ffffff;
+            --tag-text: #334155;
+
+            --social-btn-bg: #ffffff;
+            --social-btn-text: #0f172a;
+
+            /* Lightbox Theme Light Variables */
+            --lightbox-overlay-bg: rgba(241, 245, 249, 0.92);
+            --lightbox-btn-bg: rgba(255, 255, 255, 0.9);
+            --lightbox-btn-color: #0f172a;
+            --lightbox-caption-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg-dark);
+            color: var(--text-main); 
+            font-family: var(--font-main); 
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6, 
+        .logo, .section-title, .intro-title, .modal-title, 
+        .btn-cta-primary, .btn-cta-secondary, .filter-btn, 
+        .item-tag-btn, .btn-case-study, .btn-submit-form, .social-btn,
+        .portrait-badge, .sub-badge, .project-meta, .card-number-stamp {
+            font-family: var(--font-main);
+            font-weight: 700;
+        }
+
+        .bg-smooth-ambient {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background: var(--bg-ambient-gradient, radial-gradient(circle at 15% 20%, rgba(2, 132, 199, 0.15) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(14, 116, 144, 0.1) 0%, transparent 50%), linear-gradient(135deg, #020617 0%, #0f172a 100%));
+            transform: translateZ(0);
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .bg-smooth-ambient {
+            background: radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%), linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+        }
+
+        /* HEADER THU GỌN ÔM TRỌN NỘI DUNG */
+        header { 
+            position: fixed; 
+            top: 20px; 
+            left: 50%;
+            transform: translateX(-50%) translateZ(0);
+            z-index: 100; 
+            background: var(--ios-glass); 
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle); 
+            padding: 10px 24px; 
+            border-radius: var(--radius-pill);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 32px;
+            width: auto;
+            max-width: 95vw;
+            user-select: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        header:hover {
+            border-color: var(--accent-orange);
+            box-shadow: 0 10px 30px var(--accent-amber-glow);
+        }
+
+        .logo { 
+            font-size: 1.1rem; 
+            letter-spacing: 1px; 
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .logo span.dot { color: var(--accent-orange); }
+        .logo span.tag-status {
+            font-weight: 500;
+            font-size: 0.65rem;
+            background: var(--accent-amber-glow);
+            color: var(--accent-orange);
+            border: 1px solid var(--border-strong);
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { 
+            color: var(--text-sub); 
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            font-weight: 500; 
+            transition: color 0.2s ease; 
+            cursor: pointer;
+        }
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        /* THEME SWITCHER WIDGET */
+        .theme-switcher {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 999;
+            background: var(--ios-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            padding: 8px 14px;
+            border-radius: var(--radius-pill);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .theme-switcher span {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+        }
+        .theme-btn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(150,150,150,0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .theme-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px var(--accent-amber-glow);
+        }
+        .mode-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .mode-toggle-btn:hover {
+            background: var(--accent-amber-glow);
+            color: var(--accent-orange);
+        }
+
+        /* HERO SECTION */
+        .intro-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-container {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 48px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .intro-portrait-wrapper { position: relative; width: 100%; }
+
+        .portrait-img-card {
+            width: 100%;
+            height: 520px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: var(--bg-card);
+        }
+
+        .portrait-img-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.95; }
+
+        .intro-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+
+        .sub-badge {
+            font-size: 0.8rem;
+            color: var(--accent-orange);
+            border: 1px solid var(--border-strong);
+            background: var(--accent-amber-glow);
+            padding: 6px 14px;
+            border-radius: 6px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .intro-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .intro-title span.highlight { color: var(--accent-orange); }
+
+        .intro-subtitle {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text-sub);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 540px;
+        }
+
+        .intro-actions { display: flex; gap: 16px; align-items: center; }
+
+        .btn-cta-primary {
+            background: var(--accent-orange);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px var(--accent-amber-glow);
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .btn-cta-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .btn-cta-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 1px solid var(--border-strong);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-cta-secondary:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+        /* PORTFOLIO SECTION */
+        .portfolio-section { padding-top: 60px; }
+        .section-header { text-align: center; margin-bottom: 32px; }
+        .section-title { font-size: 2.2rem; color: var(--text-main); text-transform: uppercase; }
+
+        .filter-container { 
+            padding: 6px; 
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-pill);
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            margin: 0 auto 40px auto; max-width: fit-content;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .filter-btn { 
+            background: transparent; border: none; color: var(--text-sub); 
+            padding: 8px 22px; border-radius: var(--radius-pill); font-size: 0.85rem; cursor: pointer; 
+            transition: all 0.2s ease;
+        }
+        .filter-btn.active { background: var(--accent-orange); color: #fff; box-shadow: 0 4px 12px var(--accent-amber-glow); font-weight: 700; }
+
+        .projects-grid { 
+            padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 360px)); 
+            justify-content: center; gap: 28px; max-width: 1300px; margin: 0 auto;
+        }
+        .project-card { 
+            background: var(--bg-card); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle); 
+            border-radius: var(--radius-card); 
+            overflow: hidden; display: flex; flex-direction: column; text-align: center; position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .project-card:hover { 
+            transform: translateY(-6px) translateZ(0); 
+            background: var(--bg-card-hover);
+            border-color: var(--accent-orange);
+            box-shadow: 0 20px 40px var(--accent-amber-glow);
+        }
+        .card-number-stamp {
+            position: absolute; top: 14px; left: 16px; z-index: 10;
+            background: var(--ios-glass); border: 1px solid var(--border-subtle); color: var(--text-sub);
+            font-size: 0.7rem; padding: 4px 10px; border-radius: 6px;
+        }
+        .project-img-wrapper { width: 100%; height: 220px; overflow: hidden; cursor: pointer; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; opacity: 0.9; }
+        .project-card:hover .project-img { transform: scale(1.05); opacity: 1; }
+
+        .project-header { padding: 20px 20px 10px 20px; }
+        .project-meta { font-size: 0.8rem; color: var(--accent-orange); letter-spacing: 0.5px; text-transform: uppercase; }
+        .project-title { font-size: 1.3rem; margin-top: 4px; cursor: pointer; color: var(--text-main); }
+        .project-body { padding: 0 20px 24px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .items-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 20px 0; justify-content: center; }
+        
+        .item-tag-btn { 
+            background: var(--tag-bg); 
+            border: 1px solid var(--border-subtle); 
+            padding: 6px 14px; 
+            border-radius: var(--radius-pill); 
+            font-size: 0.82rem; 
+            color: var(--tag-text); 
+            cursor: pointer; 
+            font-weight: 500; 
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .item-tag-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            border-color: var(--accent-orange); 
+            font-weight: 700; 
+        }
+
+        .btn-case-study {
+            background: transparent; border: 1px solid var(--border-subtle); color: var(--text-main);
+            padding: 9px 18px; border-radius: var(--radius-pill); font-size: 0.85rem; cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-case-study:hover { background: var(--accent-amber-glow); border-color: var(--accent-orange); color: var(--accent-orange); }
+
+        /* LIGHTBOX & ZOOM CONTROLS (THEME ADAPTIVE) */
+        .lightbox-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--lightbox-overlay-bg); backdrop-filter: blur(8px);
+            display: none; justify-content: center; align-items: center; z-index: 1000; 
+            opacity: 0; transition: opacity 0.25s ease, background-color 0.3s ease;
+        }
+        .lightbox-overlay.active { display: flex; opacity: 1; }
+        
+        .lb-click-zone-left, .lb-click-zone-right {
+            position: absolute;
+            top: 0;
+            width: 25vw;
+            height: 100%;
+            z-index: 15;
+            cursor: pointer;
+        }
+        .lb-click-zone-left { left: 0; }
+        .lb-click-zone-right { right: 0; }
+
+        .lightbox-content-wrapper { 
+            position: relative; max-width: 80vw; max-height: 82vh; 
+            display: flex; flex-direction: column; align-items: center; 
+            touch-action: none; cursor: grab; user-select: none;
+            z-index: 20;
+            overflow: hidden;
+        }
+        .lightbox-content-wrapper:active { cursor: grabbing; }
+        
+        .lightbox-img { 
+            max-width: 100%; max-height: 62vh; object-fit: contain; 
+            border-radius: 16px; border: 1px solid var(--border-subtle); 
+            background-color: var(--bg-card); 
+            transform-origin: center center;
+            transition: transform 0.05s linear;
+            pointer-events: none;
+        }
+        .lightbox-caption { 
+            color: var(--text-main); 
+            margin-top: 14px; 
+            font-size: 0.9rem; 
+            background: var(--lightbox-caption-bg); 
+            padding: 8px 24px; 
+            border-radius: var(--radius-pill); 
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .lightbox-thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; max-width: 80vw; padding: 6px; }
+        .thumb-img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; }
+        .thumb-img.active { opacity: 1; border-color: var(--accent-orange); }
+        
+        /* CÁC NÚT ĐIỀU HƯỚNG & ZOOM THAY ĐỔI THEO THEME */
+        .lb-btn { 
+            background: var(--lightbox-btn-bg); 
+            border: 1px solid var(--border-subtle); 
+            color: var(--lightbox-btn-color); 
+            width: 56px; 
+            height: 56px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: background 0.2s, transform 0.2s, border-color 0.2s, opacity 0.3s ease, color 0.2s; 
+            z-index: 30; 
+            font-size: 1.3rem;
+            font-weight: bold;
+            opacity: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .lightbox-overlay.active:hover .lb-btn,
+        .lightbox-overlay.active:hover .zoom-toolbar {
+            opacity: 1;
+        }
+
+        .lb-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff;
+            border-color: var(--accent-orange);
+            transform: scale(1.1); 
+        }
+        
+        .lb-prev { position: fixed; left: 30px; top: 50%; transform: translateY(-50%); }
+        .lb-next { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); }
+        .lb-close { position: fixed; top: 30px; right: 30px; width: 48px; height: 48px; opacity: 1; }
+
+        .zoom-toolbar {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            gap: 8px;
+            z-index: 30;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .zoom-btn {
+            background: var(--lightbox-btn-bg);
+            border: 1px solid var(--border-subtle);
+            color: var(--lightbox-btn-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .zoom-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .zoom-btn:hover {
+            background: var(--accent-orange);
+            color: #fff;
+            border-color: var(--accent-orange);
+            transform: scale(1.08);
+        }
+
+        @media(max-width: 768px) {
+            .lb-prev { left: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
+            .lb-next { right: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
+            .lb-close { top: 15px; right: 15px; width: 40px; height: 40px; }
+            .zoom-toolbar { top: 15px; left: 15px; }
+            .zoom-btn { width: 38px; height: 38px; }
+            .lightbox-content-wrapper { max-width: 90vw; }
+            .lb-btn, .zoom-toolbar { opacity: 1 !important; } 
+        }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.7); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 1001; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--bg-card); backdrop-filter: blur(16px); border: 1px solid var(--border-subtle); border-radius: 20px; max-width: 700px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 40px; position: relative; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); color: var(--text-main); }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: var(--border-subtle); border: none; color: var(--text-main); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; }
+        .modal-title { font-size: 1.8rem; margin-bottom: 12px; }
+        .modal-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 20px 0; padding: 16px; background: var(--bg-dark); border-radius: 12px; border: 1px solid var(--border-subtle); }
+        .modal-info-item div:first-child { font-size: 0.8rem; color: var(--text-sub); }
+        .modal-info-item div:last-child { font-weight: 700; font-size: 0.95rem; color: var(--accent-orange); }
+        .modal-desc { font-weight: 400; line-height: 1.6; color: var(--text-sub); font-size: 0.98rem; }
+
+        .toast-notification {
+            position: fixed; bottom: 30px; right: 30px; background: var(--bg-card); border: 1px solid var(--accent-orange); color: var(--text-main); padding: 14px 24px; border-radius: var(--radius-pill); font-size: 0.9rem; z-index: 2000; opacity: 0; transform: translateY(20px); transition: all 0.3s ease; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .toast-notification.active { opacity: 1; transform: translateY(0); }
+
+        /* FOOTER & CÁC NÚT MẠNG XÃ HỘI */
+        footer { margin-top: 80px; padding: 40px 24px 30px 24px; border-top: 1px solid var(--border-subtle); background: var(--ios-glass); backdrop-filter: blur(10px); text-align: center; }
+        .footer-content { max-width: 650px; margin: 0 auto; }
+        .footer-title { font-size: 1.5rem; margin-bottom: 8px; color: var(--text-main); }
+        .footer-desc { font-weight: 400; color: var(--text-sub); margin-bottom: 20px; font-size: 0.95rem; }
+        .social-links { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        
+        .social-btn {
+            background: var(--social-btn-bg); 
+            border: 1px solid var(--border-subtle); 
+            color: var(--social-btn-text); 
+            padding: 8px 20px; 
+            border-radius: var(--radius-pill); 
+            font-size: 0.85rem; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .social-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            border-color: var(--accent-orange); 
+            font-weight: 700; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-smooth-ambient"></div>
+
+    <!-- WIDGET ĐỔI MÀU & SÁNG TỐI -->
+    <div class="theme-switcher">
+        <span>Giao diện:</span>
+        <button class="theme-btn" onclick="setFullTheme('#ef4444', '#0f0808', 'radial-gradient(circle at 15% 20%, rgba(239, 68, 68, 0.15) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(185, 28, 28, 0.1) 0%, transparent 50%), linear-gradient(135deg, #180505 0%, #0f0808 100%')" style="background: #ef4444;" title="Màu đỏ Ruby"></button>
+        <button class="theme-btn" onclick="setFullTheme('#38bdf8', '#090d16', 'radial-gradient(circle at 15% 20%, rgba(2, 132, 199, 0.15) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(14, 116, 144, 0.1) 0%, transparent 50%), linear-gradient(135deg, #020617 0%, #0f172a 100%')" style="background: #38bdf8;" title="Xanh dương"></button>
+        <button class="theme-btn" onclick="setFullTheme('#6366f1', '#09090b', 'radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 50%), linear-gradient(135deg, #09090b 0%, #18181b 100%')" style="background: #6366f1;" title="Xanh chàm"></button>
+        <button class="mode-toggle-btn" id="modeToggleBtn" onclick="toggleLightDarkMode()">☀️ Sáng</button>
+    </div>
+
+    <header>
+        <a href="#" class="logo" onclick="scrollToTop(event)">
+            GIANG<span class="dot">.</span>
+            <span class="tag-status">PORTFOLIO 2026</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#portfolio">Dự Án</a>
+            <a href="#contact">Liên Hệ</a>
+        </nav>
+    </header>
+
+    <section class="intro-section">
+        <div class="intro-container">
+            <div class="intro-portrait-wrapper">
+                <div class="portrait-img-card">
+                    <img src="https://i.ibb.co/Jw3bZJGJ/2.png" alt="Vũ Trường Giang Portrait" decoding="async">
+                </div>
+            </div>
+
+            <div class="intro-content">
+                <h1 class="intro-title">
+                   VŨ TRƯỜNG GIANG <span class="highlight">GRAPHIC DESIGNER</span>
+                </h1>
+                <p class="intro-subtitle">
+                    5 năm thực chiến trong lĩnh vực xây dựng nhận diện thương hiệu, bao bì thương phẩm và xuất bản ấn phẩm. Tôi theo đuổi tư duy thiết kế góc cạnh, chân thực, tập trung vào cấu trúc chắc chắn và chiều sâu thị giác.
+                </p>
+                <div class="intro-actions">
+                    <a href="#portfolio" class="btn-cta-primary">KHÁM PHÁ DỰ ÁN</a>
+                    <a href="#contact" class="btn-cta-secondary" style="text-decoration: none; display: inline-flex; align-items: center;">LIÊN HỆ TRỰC TIẾP</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">Visual & Brand Design</h2>
+        </div>
+
+        <div class="filter-container" id="filterContainer"></div>
+        <main class="projects-grid" id="projectsGrid"></main>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox" onclick="handleBackgroundClick(event)">
+        <button class="lb-btn lb-close" onclick="closeLightbox()" aria-label="Đóng">&#10005;</button>
+        
+        <div class="zoom-toolbar">
+            <button class="zoom-btn" onclick="adjustZoom(0.25)" title="Phóng to">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2V7z"/></svg>
+            </button>
+            <button class="zoom-btn" onclick="adjustZoom(-0.25)" title="Thu nhỏ">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7V9z"/></svg>
+            </button>
+            <button class="zoom-btn" onclick="resetZoom()" title="Đặt lại kích thước">
+                <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+            </button>
+        </div>
+
+        <button class="lb-btn lb-prev" onclick="changeLightboxImage(-1)" aria-label="Ảnh trước">&#10094;</button>
+        <button class="lb-btn lb-next" onclick="changeLightboxImage(1)" aria-label="Ảnh sau">&#10095;</button>
+
+        <div class="lb-click-zone-left" onclick="changeLightboxImage(-1)" title="Ảnh trước"></div>
+        <div class="lb-click-zone-right" onclick="changeLightboxImage(1)" title="Ảnh sau"></div>
+
+        <div class="lightbox-content-wrapper" id="swipeArea">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="Zoom" decoding="async">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="caseStudyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&#10005;</button>
+            <h3 class="modal-title" id="modalTitle">Tên Dự Án</h3>
+            <div class="modal-info-grid">
+                <div class="modal-info-item"><div>KHÁCH HÀNG</div><div id="modalClient">Client</div></div>
+                <div class="modal-info-item"><div>NĂM THỰC HIỆN</div><div id="modalYear">2025</div></div>
+                <div class="modal-info-item"><div>DANH MỤC</div><div id="modalCategory">Branding</div></div>
+            </div>
+            <p class="modal-desc" id="modalDesc">Mô tả chi tiết...</p>
+        </div>
+    </div>
+
+    <div class="toast-notification" id="toastMsg">Gửi tin nhắn thành công!</div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h2 class="footer-title">KẾT NỐI LÀM VIỆC</h2>
+            <p class="footer-desc">Bạn có dự án mới hoặc cần trao đổi ý tưởng? Hãy liên hệ với Giang.</p>
+            <div class="social-links">
+                <a href="mailto:gvu2883@gmail.com" class="social-btn">Gửi Email</a>
+                <a href="https://zalo.me/0339836152" target="_blank" class="social-btn">Zalo</a>
+                <a href="https://instagram.com" target="_blank" class="social-btn">Instagram</a>
+                <a href="https://facebook.com" target="_blank" class="social-btn">Facebook</a>
+            </div>
+            <p style="font-size: 0.7rem; color: var(--text-sub);">&copy; 2026 VŨ TRƯỜNG GIANG. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        const CONFIG_DATA = [
+            {
+                id: 'p1', category: 'Branding', title: 'Thương Hiệu Thời Trang', client: 'AURA Fashion', year: '2025',
+                desc: 'Xây dựng hệ thống nhận diện thương hiệu cao cấp cho dòng thời trang bền vững.', coverImg: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200',
+                items: [
+                    { name: 'Logo', img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600' },
+                    { name: 'Màu sắc & Font', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600' },
+                    { name: 'Packaging', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1600' },
+                    { name: 'Social Post', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1600' },
+                    { name: 'Mockup', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600' }
+                ]
+            },
+            {
+                id: 'p2', category: 'Packaging', title: 'Thương Hiệu Mỹ Phẩm', client: 'Glow Cosmetics', year: '2025',
+                desc: 'Thiết kế bao bì dòng sản phẩm chăm sóc da thuần chay cao cấp.', coverImg: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200',
+                items: [
+                    { name: 'Hộp', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600' },
+                    { name: 'Chai / Lọ', img: 'https://images.unsplash.com/photo-1608248597260-6521e8081686?w=1600' },
+                    { name: 'Túi', img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600' },
+                    { name: 'Key Visual', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600' },
+                    { name: 'Mockup 3D', img: 'https://images.unsplash.com/photo-1608248597260-6521e8081686?w=1600' }
+                ]
+            },
+            {
+                id: 'p3', category: 'Key Visual', title: 'Campaign Quảng Cáo', client: 'CyberTech Inc', year: '2024',
+                desc: 'Chiến dịch truyền thông toàn quốc ra mắt sản phẩm công nghệ thế hệ mới.', coverImg: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200',
+                items: [
+                    { name: 'Concept', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600' },
+                    { name: 'KV Chính', img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600' },
+                    { name: 'Poster', img: 'https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?w=1600' },
+                    { name: 'Banner', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600' },
+                    { name: 'Social Media', img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600' }
+                ]
+            },
+            {
+                id: 'p4', category: 'UI/UX Design', title: 'Giao Diện Đặt Lịch Spa', client: 'Lumiere Beauty', year: '2025',
+                desc: 'Thiết kế ứng dụng di động chuẩn iOS mượt mà, tối ưu trải nghiệm người dùng.', coverImg: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200',
+                items: [
+                    { name: 'Onboarding', img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1600' },
+                    { name: 'Dashboard', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600' },
+                    { name: 'Booking Flow', img: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1600' }
+                ]
+            },
+            {
+                id: 'p5', category: 'F&B', title: 'Nhận Diện Cà Phê Hạt', client: 'Brew & Co. Roastery', year: '2024',
+                desc: 'Hệ thống nhận diện thương hiệu cho chuỗi cà phê thủ công nguyên bản.', coverImg: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200',
+                items: [
+                    { name: 'Logo & Cup', img: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600' },
+                    { name: 'Menu Design', img: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1600' },
+                    { name: 'Merchandise', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1600' }
+                ]
+            },
+            {
+                id: 'p6', category: 'Event & Exhibition', title: 'Nhận Diện Sự Kiện TechSummit', client: 'Global Innovate', year: '2026',
+                desc: 'Thiết kế toàn bộ hệ thống đồ họa không gian, biển chỉ dẫn và ấn phẩm định danh cho sự kiện công nghệ lớn nhất năm.', coverImg: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200',
+                items: [
+                    { name: 'Stage Backdrop', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600' },
+                    { name: 'Standee & Badge', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600' },
+                    { name: 'Catalog', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1600' }
+                ]
+            }
+        ];
+
+        let currentActiveProject = null;
+        let currentItemIndex = 0;
+        let currentZoom = 1;
+        let panX = 0;
+        let panY = 0;
+
+        // Render Portfolio
+        function renderPortfolio(filter = 'Tất cả') {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'Tất cả' 
+                ? CONFIG_DATA 
+                : CONFIG_DATA.filter(p => p.category === filter);
+
+            filtered.forEach((project, idx) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="card-number-stamp">0${idx + 1}</div>
+                    <div class="project-img-wrapper" onclick="openLightbox('${project.id}', 0)">
+                        <img src="${project.coverImg}" class="project-img" alt="${project.title}" loading="lazy">
+                    </div>
+                    <div class="project-header">
+                        <div class="project-meta">${project.category}</div>
+                        <h3 class="project-title" onclick="openCaseStudy('${project.id}')">${project.title}</h3>
+                    </div>
+                    <div class="project-body">
+                        <ul class="items-list">
+                            ${project.items.map((it, i) => `<li><button class="item-tag-btn" onclick="openLightbox('${project.id}', ${i})">${it.name}</button></li>`).join('')}
+                        </ul>
+                        <button class="btn-case-study" onclick="openCaseStudy('${project.id}')">Xem Chi Tiết Dự Án</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Setup Filter Buttons
+        function setupFilters() {
+            const categories = ['Tất cả', ...new Set(CONFIG_DATA.map(p => p.category))];
+            const container = document.getElementById('filterContainer');
+            container.innerHTML = '';
+
+            categories.forEach((cat, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${idx === 0 ? 'active' : ''}`;
+                btn.textContent = cat;
+                btn.onclick = () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderPortfolio(cat);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // Lightbox Logic
+        function openLightbox(projectId, itemIndex) {
+            currentActiveProject = CONFIG_DATA.find(p => p.id === projectId);
+            if (!currentActiveProject) return;
+            currentItemIndex = itemIndex;
+            resetZoom();
+            
+            document.getElementById('lightbox').classList.add('active');
+            updateLightboxContent();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentActiveProject = null;
+        }
+
+        function handleBackgroundClick(e) {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        }
+
+        function changeLightboxImage(direction) {
+            if (!currentActiveProject) return;
+            const itemsLength = currentActiveProject.items.length;
+            currentItemIndex = (currentItemIndex + direction + itemsLength) % itemsLength;
+            resetZoom();
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            if (!currentActiveProject) return;
+            const currentItem = currentActiveProject.items[currentItemIndex];
+            
+            const imgElement = document.getElementById('lightboxImg');
+            imgElement.src = currentItem.img;
+            
+            document.getElementById('lightboxCaption').textContent = `${currentActiveProject.title} — ${currentItem.name} (${currentItemIndex + 1}/${currentActiveProject.items.length})`;
+
+            // Thumbs
+            const thumbsContainer = document.getElementById('lightboxThumbs');
+            thumbsContainer.innerHTML = currentActiveProject.items.map((it, i) => `
+                <img src="${it.img}" class="thumb-img ${i === currentItemIndex ? 'active' : ''}" onclick="jumpToLightboxItem(${i})" alt="thumb">
+            `).join('');
+        }
+
+        function jumpToLightboxItem(index) {
+            currentItemIndex = index;
+            resetZoom();
+            updateLightboxContent();
+        }
+
+        // --- HỆ THỐNG THU PHÓNG (ZOOM & PAN) ---
+        function updateTransform() {
+            const imgElement = document.getElementById('lightboxImg');
+            imgElement.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
+        }
+
+        function adjustZoom(amount) {
+            currentZoom = Math.max(1, Math.min(4, currentZoom + amount));
+            if (currentZoom === 1) { panX = 0; panY = 0; }
+            updateTransform();
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            panX = 0;
+            panY = 0;
+            updateTransform();
+        }
+
+        // Zoom bằng con lăn chuột
+        const swipeArea = document.getElementById('swipeArea');
+        swipeArea.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const zoomStep = 0.2;
+            if (e.deltaY < 0) {
+                currentZoom = Math.min(4, currentZoom + zoomStep);
+            } else {
+                currentZoom = Math.max(1, currentZoom - zoomStep);
+            }
+            if (currentZoom === 1) { panX = 0; panY = 0; }
+            updateTransform();
+        }, { passive: false });
+
+        // Kéo chuột di chuyển ảnh khi đang zoom / chuyển ảnh (Drag & Swipe)
+        let startX = 0;
+        let startY = 0;
+        let initialPanX = 0;
+        let initialPanY = 0;
+        let isDragging = false;
+        let dragStartX = 0;
+
+        swipeArea.addEventListener('pointerdown', (e) => {
+            if (e.target.classList.contains('lb-btn') || e.target.classList.contains('thumb-img') || e.target.closest('.zoom-toolbar')) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            startX = e.clientX;
+            startY = e.clientY;
+            initialPanX = panX;
+            initialPanY = panY;
+            swipeArea.setPointerCapture(e.pointerId);
+        });
+
+        swipeArea.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            if (currentZoom > 1) {
+                panX = initialPanX + (e.clientX - startX);
+                panY = initialPanY + (e.clientY - startY);
+                updateTransform();
+            } else {
+                const diffX = e.clientX - dragStartX;
+                const lightboxImg = document.getElementById('lightboxImg');
+                lightboxImg.style.transform = `translateX(${diffX}px)`;
+            }
+        });
+
+        swipeArea.addEventListener('pointerup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            swipeArea.releasePointerCapture(e.pointerId);
+
+            if (currentZoom === 1) {
+                const diffX = e.clientX - dragStartX;
+                const threshold = 70;
+                if (diffX < -threshold) {
+                    changeLightboxImage(1);
+                } else if (diffX > threshold) {
+                    changeLightboxImage(-1);
+                } else {
+                    updateTransform();
+                }
+            }
+        });
+
+        swipeArea.addEventListener('pointercancel', () => {
+            isDragging = false;
+            updateTransform();
+        });
+
+        // Bắt sự kiện bàn phím
+        window.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            const isLightboxActive = lightbox.classList.contains('active');
+
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeModal();
+            }
+
+            if (isLightboxActive) {
+                if (e.key === 'ArrowLeft' && currentZoom === 1) {
+                    changeLightboxImage(-1);
+                } else if (e.key === 'ArrowRight' && currentZoom === 1) {
+                    changeLightboxImage(1);
+                } else if (e.key === '+' || e.key === '=') {
+                    adjustZoom(0.25);
+                } else if (e.key === '-' || e.key === '_') {
+                    adjustZoom(-0.25);
+                }
+            }
+        });
+
+        // Case Study Modal
+        function openCaseStudy(projectId) {
+            const project = CONFIG_DATA.find(p => p.id === projectId);
+            if (!project) return;
+
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalClient').textContent = project.client;
+            document.getElementById('modalYear').textContent = project.year;
+            document.getElementById('modalCategory').textContent = project.category;
+            document.getElementById('modalDesc').textContent = project.desc + ' Quy trình triển khai tập trung vào việc nghiên cứu sâu sắc hành vi khách hàng, xây dựng hệ thống lưới nhận diện nhất quán, kết hợp cùng kỹ thuật xử lý màu sắc và typographic sắc nét nhằm tạo ra bản sắc thương hiệu vững chãi trên thị trường.';
+
+            document.getElementById('caseStudyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('caseStudyModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Theme / Color Switcher
+        function setFullTheme(accentColor, darkBgColor, gradientString) {
+            document.documentElement.style.setProperty('--accent-orange', accentColor);
+            document.documentElement.style.setProperty('--bg-dark', darkBgColor);
+            document.documentElement.style.setProperty('--bg-ambient-gradient', gradientString);
+            
+            if(accentColor === '#ef4444') document.documentElement.style.setProperty('--accent-orange-hover', '#b91c1c');
+            else if(accentColor === '#6366f1') document.documentElement.style.setProperty('--accent-orange-hover', '#4f46e5');
+            else document.documentElement.style.setProperty('--accent-orange-hover', '#0284c7');
+        }
+
+        function toggleLightDarkMode() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const toggleBtn = document.getElementById('modeToggleBtn');
+
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                toggleBtn.textContent = '🌙 Tối';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                toggleBtn.textContent = '☀️ Sáng';
+            }
+        }
+
+        function scrollToTop(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Khởi chạy khi load trang
+        window.addEventListener('DOMContentLoaded', () => {
+            setupFilters();
+            renderPortfolio();
+        });
+    </script>
+</body>
+</html>
