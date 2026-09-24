@@ -365,9 +365,26 @@
             background: var(--ios-glass); border: 1px solid var(--border-subtle); color: var(--text-sub);
             font-size: 0.7rem; padding: 4px 10px; border-radius: 6px;
         }
-        .project-img-wrapper { width: 100%; height: 220px; overflow: hidden; cursor: pointer; }
-        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; opacity: 0.9; }
-        .project-card:hover .project-img { transform: scale(1.05); opacity: 1; }
+        
+        /* KHUNG ẢNH CÓ HỖ TRỢ VUỐT TRÊN CARD SẢN PHẨM */
+        .project-img-wrapper { 
+            width: 100%; height: 220px; overflow: hidden; cursor: grab; position: relative; 
+            touch-action: pan-y; user-select: none; 
+        }
+        .project-img-wrapper:active { cursor: grabbing; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, opacity 0.2s ease; opacity: 0.9; pointer-events: none; }
+        .project-card:hover .project-img { opacity: 1; }
+
+        /* THANH CHỈ DẪN CHUYỂN ẢNH (DOTS) TRÊN CARD */
+        .card-dots {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px; z-index: 5; pointer-events: none;
+        }
+        .card-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4);
+            transition: all 0.2s ease;
+        }
+        .card-dot.active { background: var(--accent-orange); width: 16px; border-radius: 3px; }
 
         .project-header { padding: 20px 20px 10px 20px; }
         .project-meta { font-size: 0.8rem; color: var(--accent-orange); letter-spacing: 0.5px; text-transform: uppercase; }
@@ -520,7 +537,6 @@
                 gap: 28px; 
                 text-align: center; 
             }
-            /* Đưa ảnh thẻ lên trên (order: 1), và phần chữ xuống dưới ảnh nền (order: 2) */
             .intro-portrait-wrapper { order: 1; }
             .intro-content { 
                 order: 2; 
@@ -534,7 +550,6 @@
             .btn-cta-primary, .btn-cta-secondary { width: 100%; text-align: center; }
 
             .section-title { font-size: 1.6rem; }
-            /* Phóng to card sản phẩm full chiều ngang màn hình điện thoại vừa khít */
             .projects-grid { grid-template-columns: 100%; padding: 0 16px; gap: 20px; }
             .project-card { width: 100%; }
             
@@ -550,7 +565,6 @@
             .zoom-toolbar { top: 15px; left: 15px; }
             .zoom-btn { width: 38px; height: 38px; }
             
-            /* Phóng to khung ảnh sản phẩm trong Lightbox vừa vặn với điện thoại */
             .lightbox-content-wrapper { max-width: 95vw; width: 95vw; }
             .lightbox-img { max-width: 100%; max-height: 70vh; width: 100%; }
             .lightbox-thumbs { max-width: 95vw; }
@@ -675,5 +689,399 @@
         </div>
     </footer>
 
+    <script>
+        // DỮ LIỆU DỰ ÁN (Hỗ trợ danh sách nhiều ảnh để vuốt chuyển đổi trực tiếp trên thẻ sản phẩm)
+        const projects = [
+            {
+                id: 1,
+                title: "Nhận Diện Thương Hiệu 1",
+                category: "Branding",
+                client: "Vinamilk Corp",
+                year: "2025",
+                desc: "Dự án thiết kế bộ nhận diện thương hiệu độc quyền với phong cách tối giản, bố cục hiện đại, đường nét mạnh mẽ và tối ưu hoá trên đa nền tảng ấn phẩm số cũng như bao bì thương phẩm.",
+                images: [
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1542744094-3a31246264d0?q=80&w=800&auto=format&fit=crop"
+                ],
+                tags: ["Logo System", "Brand Guidelines", "Stationery"]
+            },
+            {
+                id: 2,
+                title: "Bao Bì Sản Phẩm Cao Cấp",
+                category: "Packaging",
+                client: "The Coffee House",
+                year: "2025",
+                desc: "Thiết kế bao bì độc đáo tạo ấn tượng mạnh mẽ từ cái nhìn đầu tiên, kết hợp vật liệu cao cấp và cấu trúc mở hộp sáng tạo.",
+                images: [
+                    "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop"
+                ],
+                tags: ["Box Design", "Label", "3D Mockup"]
+            },
+            {
+                id: 3,
+                title: "Ấn Phẩm Sách & Tạp Chí",
+                category: "Editorial",
+                client: "Harper's Bazaar",
+                year: "2024",
+                desc: "Nghệ thuật sắp đặt chữ (Typography) kết hợp bố cục trang tinh tế tạo nên các ấn phẩm xuất bản mang tính thẩm mỹ cao và chạm đến cảm xúc người đọc.",
+                images: [
+                    "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800&auto=format&fit=crop"
+                ],
+                tags: ["Magazine Layout", "Typography", "Book Cover"]
+            },
+            {
+                id: 4,
+                title: "Poster Sự Kiện Nghệ Thuật",
+                category: "Poster",
+                client: "VCCA Gallery",
+                year: "2024",
+                desc: "Series poster quảng bá triển lãm nghệ thuật đương đại sử dụng hệ thống lưới thị giác mạnh mẽ và màu sắc tương phản sắc nét.",
+                images: [
+                    "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=800&auto=format&fit=crop"
+                ],
+                tags: ["Key Visual", "Typography", "Exhibition"]
+            }
+        ];
+
+        let currentFilter = 'All';
+        
+        // Trạng thái Card Thumbnails (Lưu index ảnh hiện tại cho từng card sản phẩm)
+        let cardImageIndexes = {};
+
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFilters();
+            renderProjects(currentFilter);
+            initLightboxSwipe();
+        });
+
+        function scrollToTop(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- HỆ THỐNG GIAO DIỆN & MÀU SẮC ---
+        function setFullTheme(accentColor, bgColor, ambientBg) {
+            document.documentElement.style.setProperty('--accent-orange', accentColor);
+            document.documentElement.style.setProperty('--accent-amber-glow', accentColor + '40');
+            document.documentElement.style.setProperty('--bg-dark', bgColor);
+            document.documentElement.style.setProperty('--bg-ambient-gradient', ambientBg);
+            showToast("Đã thay đổi bộ nhận diện màu sắc!");
+        }
+
+        function toggleLightDarkMode() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const modeBtn = document.getElementById('modeToggleBtn');
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                modeBtn.textContent = '🌙 Tối';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                modeBtn.textContent = '☀️ Sáng';
+            }
+        }
+
+        // --- RENDER BỘ LỌC & DANH SÁCH DỰ ÁN ---
+        function renderFilters() {
+            const categories = ['All', ...new Set(projects.map(p => p.category))];
+            const container = document.getElementById('filterContainer');
+            container.innerHTML = categories.map(cat => `
+                <button class="filter-btn ${cat === currentFilter ? 'active' : ''}" onclick="filterProjects('${cat}')">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function filterProjects(cat) {
+            currentFilter = cat;
+            renderFilters();
+            renderProjects(cat);
+        }
+
+        function renderProjects(filter) {
+            const grid = document.getElementById('projectsGrid');
+            const filtered = filter === 'All' ? projects : projects.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map((p, idx) => {
+                // Khởi tạo index ảnh cho card nếu chưa có
+                if (cardImageIndexes[p.id] === undefined) {
+                    cardImageIndexes[p.id] = 0;
+                }
+                const activeImgIdx = cardImageIndexes[p.id];
+                const currentImgUrl = p.images[activeImgIdx];
+
+                // Tạo các chấm chỉ dẫn nếu dự án có nhiều hơn 1 ảnh
+                let dotsHtml = '';
+                if (p.images.length > 1) {
+                    dotsHtml = `<div class="card-dots">` + 
+                        p.images.map((_, i) => `<div class="card-dot ${i === activeImgIdx ? 'active' : ''}"></div>`).join('') + 
+                        `</div>`;
+                }
+
+                return `
+                    <div class="project-card" data-id="${p.id}">
+                        <div class="card-number-stamp">#0${idx + 1}</div>
+                        <div class="project-img-wrapper" 
+                             onmousedown="startCardDrag(event, ${p.id})" 
+                             ontouchstart="startCardTouch(event, ${p.id})"
+                             onclick="openLightboxForProject(${p.id})">
+                            <img class="project-img" src="${currentImgUrl}" alt="${p.title}" id="card-img-${p.id}" />
+                            ${dotsHtml}
+                        </div>
+                        <div class="project-header">
+                            <div class="project-meta">${p.category}</div>
+                            <h3 class="project-title" onclick="openCaseStudy(${p.id})">${p.title}</h3>
+                        </div>
+                        <div class="project-body">
+                            <ul class="items-list">
+                                ${p.tags.map(tag => `<button class="item-tag-btn" onclick="filterProjects('${p.category}')">${tag}</button>`).join('')}
+                            </ul>
+                            <button class="btn-case-study" onclick="openCaseStudy(${p.id})">Xem Chi Tiết</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- TÍNH NĂNG VUỐT TRÊN CARD SẢN PHẨM (CHUỘT & CẢM ỨNG ĐIỆN THOẠI) ---
+        let cardDragData = { active: false, startX: 0, projectId: null };
+
+        function startCardDrag(e, projectId) {
+            cardDragData = { active: true, startX: e.clientX, projectId: projectId };
+            window.addEventListener('mousemove', onCardMouseMove);
+            window.addEventListener('mouseup', onCardMouseUp);
+        }
+
+        function onCardMouseMove(e) {
+            if (!cardDragData.active) return;
+            const diffX = e.clientX - cardDragData.startX;
+            if (Math.abs(diffX) > 40) { // Kéo qua ngưỡng 40px thì chuyển ảnh
+                shiftCardImage(cardDragData.projectId, diffX < 0 ? 1 : -1);
+                stopCardDrag();
+            }
+        }
+
+        function onCardMouseUp() {
+            stopCardDrag();
+        }
+
+        function stopCardDrag() {
+            cardDragData.active = false;
+            window.removeEventListener('mousemove', onCardMouseMove);
+            window.removeEventListener('mouseup', onCardMouseUp);
+        }
+
+        function startCardTouch(e, projectId) {
+            const touch = e.touches[0];
+            let startX = touch.clientX;
+            
+            const onTouchMove = (moveEvent) => {
+                const diffX = moveEvent.touches[0].clientX - startX;
+                if (Math.abs(diffX) > 40) {
+                    shiftCardImage(projectId, diffX < 0 ? 1 : -1);
+                    cleanup();
+                }
+            };
+
+            const cleanup = () => {
+                window.removeEventListener('touchmove', onTouchMove);
+                window.removeEventListener('touchend', cleanup);
+            };
+
+            window.addEventListener('touchmove', onTouchMove);
+            window.addEventListener('touchend', cleanup);
+        }
+
+        function shiftCardImage(projectId, direction) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project || project.images.length <= 1) return;
+
+            let newIdx = cardImageIndexes[projectId] + direction;
+            if (newIdx >= project.images.length) newIdx = 0; // Vòng lặp lại từ đầu
+            if (newIdx < 0) newIdx = project.images.length - 1;
+
+            cardImageIndexes[projectId] = newIdx;
+            
+            // Cập nhật lại giao diện ngay lập tức mà không cần render lại toàn bộ grid
+            const imgElement = document.getElementById(`card-img-${projectId}`);
+            if (imgElement) {
+                imgElement.style.opacity = 0;
+                setTimeout(() => {
+                    imgElement.src = project.images[newIdx];
+                    imgElement.style.opacity = 1;
+                }, 150);
+            }
+
+            // Cập nhật các dấu chấm (dots)
+            const cardEl = document.querySelector(`.project-card[data-id="${projectId}"]`);
+            if (cardEl) {
+                const dots = cardEl.querySelectorAll('.card-dot');
+                dots.forEach((dot, idx) => {
+                    if (idx === newIdx) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+
+        // --- LIGHTBOX GALLERY STATE & LOGIC ---
+        let lightboxImages = [];
+        let lbCurrentIdx = 0;
+        let zoomLevel = 1;
+        let panX = 0;
+        let panY = 0;
+
+        function openLightboxForProject(projectId) {
+            const p = projects.find(item => item.id === projectId);
+            if (!p) return;
+            lightboxImages = p.images;
+            // Mở tại đúng ảnh đang hiển thị trên card
+            lbCurrentIdx = cardImageIndexes[projectId] !== undefined ? cardImageIndexes[projectId] : 0;
+            openLightboxModal();
+        }
+
+        function openLightboxModal() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('active');
+            updateLightboxContent();
+            renderThumbs();
+            resetZoom();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function handleBackgroundClick(e) {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        }
+
+        function changeLightboxImage(direction) {
+            lbCurrentIdx += direction;
+            if (lbCurrentIdx >= lightboxImages.length) lbCurrentIdx = 0;
+            if (lbCurrentIdx < 0) lbCurrentIdx = lightboxImages.length - 1;
+            updateLightboxContent();
+            renderThumbs();
+            resetZoom();
+        }
+
+        function setLightboxImage(index) {
+            lbCurrentIdx = index;
+            updateLightboxContent();
+            renderThumbs();
+            resetZoom();
+        }
+
+        function updateLightboxContent() {
+            const imgEl = document.getElementById('lightboxImg');
+            const captionEl = document.getElementById('lightboxCaption');
+            imgEl.src = lightboxImages[lbCurrentIdx];
+            captionEl.textContent = `Hình ảnh ${lbCurrentIdx + 1} / ${lightboxImages.length}`;
+        }
+
+        function renderThumbs() {
+            const thumbsContainer = document.getElementById('lightboxThumbs');
+            if (lightboxImages.length <= 1) {
+                thumbsContainer.innerHTML = '';
+                return;
+            }
+            thumbsContainer.innerHTML = lightboxImages.map((url, idx) => `
+                <img class="thumb-img ${idx === lbCurrentIdx ? 'active' : ''}" src="${url}" onclick="setLightboxImage(${idx})" alt="Thumb"/>
+            `).join('');
+        }
+
+        // Zoom & Pan trong Lightbox
+        function adjustZoom(amount) {
+            zoomLevel = Math.max(1, Math.min(4, zoomLevel + amount));
+            if (zoomLevel === 1) { panX = 0; panY = 0; }
+            applyTransform();
+        }
+
+        function resetZoom() {
+            zoomLevel = 1;
+            panX = 0;
+            panY = 0;
+            applyTransform();
+        }
+
+        function applyTransform() {
+            const img = document.getElementById('lightboxImg');
+            img.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
+        }
+
+        // Tích hợp vuốt chuyển ảnh hoặc kéo ảnh khi phóng to trong Lightbox
+        function initLightboxSwipe() {
+            const swipeArea = document.getElementById('swipeArea');
+            let startX = 0, startY = 0;
+            let isDragging = false;
+
+            swipeArea.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                startX = e.clientX - panX;
+                startY = e.clientY - panY;
+                swipeArea.setPointerCapture(e.pointerId);
+            });
+
+            swipeArea.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                if (zoomLevel > 1) {
+                    panX = e.clientX - startX;
+                    panY = e.clientY - startY;
+                    applyTransform();
+                }
+            });
+
+            swipeArea.addEventListener('pointerup', (e) => {
+                if (!isDragging) return;
+                let endX = e.clientX;
+                let diffX = endX - (startX + panX);
+                
+                // Nếu không phóng to ảnh và vuốt ngang > 50px thì chuyển ảnh Lightbox
+                if (zoomLevel === 1 && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        changeLightboxImage(-1);
+                    } else {
+                        changeLightboxImage(1);
+                    }
+                }
+                isDragging = false;
+            });
+        }
+
+        // --- CASE STUDY MODAL ---
+        function openCaseStudy(projectId) {
+            const p = projects.find(item => item.id === projectId);
+            if (!p) return;
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalClient').textContent = p.client;
+            document.getElementById('modalYear').textContent = p.year;
+            document.getElementById('modalCategory').textContent = p.category;
+            document.getElementById('modalDesc').textContent = p.desc;
+            document.getElementById('caseStudyModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('caseStudyModal').classList.remove('active');
+        }
+
+        // --- TOAST NOTIFICATION ---
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            toast.textContent = msg;
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
