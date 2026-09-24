@@ -402,7 +402,7 @@
         }
         .btn-case-study:hover { background: var(--accent-amber-glow); border-color: var(--accent-orange); color: var(--accent-orange); }
 
-        /* LIGHTBOX & ZOOM CONTROLS (THEME ADAPTIVE) */
+        /* LIGHTBOX & ZOOM CONTROLS */
         .lightbox-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--lightbox-overlay-bg); backdrop-filter: blur(8px);
@@ -412,12 +412,7 @@
         .lightbox-overlay.active { display: flex; opacity: 1; }
         
         .lb-click-zone-left, .lb-click-zone-right {
-            position: absolute;
-            top: 0;
-            width: 25vw;
-            height: 100%;
-            z-index: 15;
-            cursor: pointer;
+            position: absolute; top: 0; width: 25vw; height: 100%; z-index: 15; cursor: pointer;
         }
         .lb-click-zone-left { left: 0; }
         .lb-click-zone-right { right: 0; }
@@ -426,8 +421,7 @@
             position: relative; max-width: 80vw; max-height: 82vh; 
             display: flex; flex-direction: column; align-items: center; 
             touch-action: none; cursor: grab; user-select: none;
-            z-index: 20;
-            overflow: hidden;
+            z-index: 20; overflow: hidden;
         }
         .lightbox-content-wrapper:active { cursor: grabbing; }
         
@@ -440,99 +434,37 @@
             pointer-events: none;
         }
         .lightbox-caption { 
-            color: var(--text-main); 
-            margin-top: 14px; 
-            font-size: 0.9rem; 
-            background: var(--lightbox-caption-bg); 
-            padding: 8px 24px; 
-            border-radius: var(--radius-pill); 
-            border: 1px solid var(--border-subtle);
+            color: var(--text-main); margin-top: 14px; font-size: 0.9rem; 
+            background: var(--lightbox-caption-bg); padding: 8px 24px; 
+            border-radius: var(--radius-pill); border: 1px solid var(--border-subtle);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .lightbox-thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; max-width: 80vw; padding: 6px; }
         .thumb-img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; }
         .thumb-img.active { opacity: 1; border-color: var(--accent-orange); }
         
-        /* CÁC NÚT ĐIỀU HƯỚNG & ZOOM THAY ĐỔI THEO THEME */
         .lb-btn { 
-            background: var(--lightbox-btn-bg); 
-            border: 1px solid var(--border-subtle); 
-            color: var(--lightbox-btn-color); 
-            width: 56px; 
-            height: 56px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            transition: background 0.2s, transform 0.2s, border-color 0.2s, opacity 0.3s ease, color 0.2s; 
-            z-index: 30; 
-            font-size: 1.3rem;
-            font-weight: bold;
-            opacity: 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: var(--lightbox-btn-bg); border: 1px solid var(--border-subtle); color: var(--lightbox-btn-color); 
+            width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; transition: background 0.2s, transform 0.2s, border-color 0.2s, opacity 0.3s ease, color 0.2s; 
+            z-index: 30; font-size: 1.3rem; font-weight: bold; opacity: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .lightbox-overlay.active:hover .lb-btn,
-        .lightbox-overlay.active:hover .zoom-toolbar {
-            opacity: 1;
-        }
-
-        .lb-btn:hover { 
-            background: var(--accent-orange); 
-            color: #fff;
-            border-color: var(--accent-orange);
-            transform: scale(1.1); 
-        }
+        .lightbox-overlay.active:hover .zoom-toolbar { opacity: 1; }
+        .lb-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); transform: scale(1.1); }
         
         .lb-prev { position: fixed; left: 30px; top: 50%; transform: translateY(-50%); }
         .lb-next { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); }
         .lb-close { position: fixed; top: 30px; right: 30px; width: 48px; height: 48px; opacity: 1; }
 
-        .zoom-toolbar {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            display: flex;
-            gap: 8px;
-            z-index: 30;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        .zoom-toolbar { position: fixed; top: 30px; left: 30px; display: flex; gap: 8px; z-index: 30; opacity: 0; transition: opacity 0.3s ease; }
         .zoom-btn {
-            background: var(--lightbox-btn-bg);
-            border: 1px solid var(--border-subtle);
-            color: var(--lightbox-btn-color);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: var(--lightbox-btn-bg); border: 1px solid var(--border-subtle); color: var(--lightbox-btn-color);
+            width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .zoom-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        .zoom-btn:hover {
-            background: var(--accent-orange);
-            color: #fff;
-            border-color: var(--accent-orange);
-            transform: scale(1.08);
-        }
-
-        @media(max-width: 768px) {
-            .lb-prev { left: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
-            .lb-next { right: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
-            .lb-close { top: 15px; right: 15px; width: 40px; height: 40px; }
-            .zoom-toolbar { top: 15px; left: 15px; }
-            .zoom-btn { width: 38px; height: 38px; }
-            .lightbox-content-wrapper { max-width: 90vw; }
-            .lb-btn, .zoom-toolbar { opacity: 1 !important; } 
-        }
+        .zoom-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        .zoom-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); transform: scale(1.08); }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.7); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 1001; padding: 20px; }
         .modal-overlay.active { display: flex; }
@@ -573,6 +505,41 @@
             color: #fff; 
             border-color: var(--accent-orange); 
             font-weight: 700; 
+        }
+
+        /* --- MEDIA QUERY CHO MÀN HÌNH ĐIỆN THOẠI (Dưới 768px) --- */
+        @media(max-width: 768px) {
+            header { top: 10px; padding: 8px 16px; gap: 16px; max-width: 92vw; }
+            .logo { font-size: 0.95rem; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.8rem; }
+
+            .intro-section { padding: 100px 16px 40px 16px; min-height: auto; }
+            .intro-container { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+            .intro-content { align-items: center; text-align: center; }
+            .portrait-img-card { height: 380px; max-width: 320px; margin: 0 auto; }
+            .intro-title { font-size: 2rem; line-height: 1.3; }
+            .intro-subtitle { font-size: 0.95rem; }
+            .intro-actions { flex-direction: column; width: 100%; gap: 12px; }
+            .btn-cta-primary, .btn-cta-secondary { width: 100%; text-align: center; }
+
+            .section-title { font-size: 1.6rem; }
+            .projects-grid { grid-template-columns: 1fr; padding: 0 16px; gap: 20px; }
+            .filter-container { max-width: 90vw; padding: 4px; gap: 4px; }
+            .filter-btn { padding: 6px 14px; font-size: 0.78rem; }
+
+            .theme-switcher { bottom: 12px; left: 12px; padding: 6px 10px; gap: 6px; }
+            .theme-switcher span { display: none; }
+
+            .lb-prev { left: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
+            .lb-next { right: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
+            .lb-close { top: 15px; right: 15px; width: 40px; height: 40px; }
+            .zoom-toolbar { top: 15px; left: 15px; }
+            .zoom-btn { width: 38px; height: 38px; }
+            .lightbox-content-wrapper { max-width: 90vw; }
+            .lb-btn, .zoom-toolbar { opacity: 1 !important; } 
+
+            footer { margin-top: 50px; padding: 30px 16px; }
         }
     </style>
 </head>
@@ -617,7 +584,7 @@
                 </p>
                 <div class="intro-actions">
                     <a href="#portfolio" class="btn-cta-primary">KHÁM PHÁ DỰ ÁN</a>
-                    <a href="#contact" class="btn-cta-secondary" style="text-decoration: none; display: inline-flex; align-items: center;">LIÊN HỆ TRỰC TIẾP</a>
+                    <a href="#contact" class="btn-cta-secondary" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">LIÊN HỆ TRỰC TIẾP</a>
                 </div>
             </div>
         </div>
@@ -699,326 +666,95 @@
                     { name: 'Logo', img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600' },
                     { name: 'Màu sắc & Font', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600' },
                     { name: 'Packaging', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1600' },
-                    { name: 'Social Post', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1600' },
-                    { name: 'Mockup', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600' }
+                    { name: 'Social Post', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1600' }
                 ]
             },
             {
                 id: 'p2', category: 'Packaging', title: 'Thương Hiệu Mỹ Phẩm', client: 'Glow Cosmetics', year: '2025',
                 desc: 'Thiết kế bao bì dòng sản phẩm chăm sóc da thuần chay cao cấp.', coverImg: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200',
                 items: [
-                    { name: 'Hộp', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600' },
-                    { name: 'Chai / Lọ', img: 'https://images.unsplash.com/photo-1608248597260-6521e8081686?w=1600' },
-                    { name: 'Túi', img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600' },
-                    { name: 'Key Visual', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600' },
-                    { name: 'Mockup 3D', img: 'https://images.unsplash.com/photo-1608248597260-6521e8081686?w=1600' }
+                    { name: 'Bao bì chính', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600' },
+                    { name: 'Nhãn mác', img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=1600' }
                 ]
             },
             {
-                id: 'p3', category: 'Key Visual', title: 'Campaign Quảng Cáo', client: 'CyberTech Inc', year: '2024',
-                desc: 'Chiến dịch truyền thông toàn quốc ra mắt sản phẩm công nghệ thế hệ mới.', coverImg: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200',
+                id: 'p3', category: 'Branding', title: 'Nhận Diện Quán Cafe', client: 'Nox Specialty Coffee', year: '2025',
+                desc: 'Thiết kế thương hiệu đậm chất tối giản, phong cách công nghiệp dành cho chuỗi quán cafe.', coverImg: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200',
                 items: [
-                    { name: 'Concept', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600' },
-                    { name: 'KV Chính', img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600' },
-                    { name: 'Poster', img: 'https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?w=1600' },
-                    { name: 'Banner', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600' },
-                    { name: 'Social Media', img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600' }
+                    { name: 'Logo & Guideline', img: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600' },
+                    { name: 'Ly & Đồng phục', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1600' }
                 ]
             },
             {
-                id: 'p4', category: 'UI/UX Design', title: 'Giao Diện Đặt Lịch Spa', client: 'Lumiere Beauty', year: '2025',
-                desc: 'Thiết kế ứng dụng di động chuẩn iOS mượt mà, tối ưu trải nghiệm người dùng.', coverImg: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200',
+                id: 'p4', category: 'Editorial', title: 'Thiết Kế Tạp Chí Nghệ Thuật', client: 'Mono Magazine', year: '2024',
+                desc: 'Dàn trang, lựa chọn kiểu chữ và xử lý thị giác cho ấn phẩm nghệ thuật phát hành định kỳ.', coverImg: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200',
                 items: [
-                    { name: 'Onboarding', img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1600' },
-                    { name: 'Dashboard', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600' },
-                    { name: 'Booking Flow', img: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1600' }
+                    { name: 'Bìa Tạp Chí', img: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1600' },
+                    { name: 'Bố cục trang nội dung', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1600' }
                 ]
             },
             {
-                id: 'p5', category: 'F&B', title: 'Nhận Diện Cà Phê Hạt', client: 'Brew & Co. Roastery', year: '2024',
-                desc: 'Hệ thống nhận diện thương hiệu cho chuỗi cà phê thủ công nguyên bản.', coverImg: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200',
+                id: 'p5', category: 'Packaging', title: 'Hộp Quà Tặng Trà Thượng Hạng', client: 'Lotus Tea', year: '2024',
+                desc: 'Giải pháp bao bì hộp cứng cao cấp kết hợp kỹ thuật ép kim và vân nổi.', coverImg: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=1200',
                 items: [
-                    { name: 'Logo & Cup', img: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600' },
-                    { name: 'Menu Design', img: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1600' },
-                    { name: 'Merchandise', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1600' }
+                    { name: 'Hộp định hình', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=1600' },
+                    { name: 'Thiết kế nhãn trà', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=1600' }
                 ]
             },
             {
-                id: 'p6', category: 'Event & Exhibition', title: 'Nhận Diện Sự Kiện TechSummit', client: 'Global Innovate', year: '2026',
-                desc: 'Thiết kế toàn bộ hệ thống đồ họa không gian, biển chỉ dẫn và ấn phẩm định danh cho sự kiện công nghệ lớn nhất năm.', coverImg: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200',
+                id: 'p6', category: 'UI/UX', title: 'Giao Diện Ứng Dụng Sáng Tạo', client: 'Kreativ App', year: '2024',
+                desc: 'Thiết kế giao diện ứng dụng di động dành cho cộng đồng nhà sáng tạo nội dung số.', coverImg: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200',
                 items: [
-                    { name: 'Stage Backdrop', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600' },
-                    { name: 'Standee & Badge', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600' },
-                    { name: 'Catalog', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1600' }
+                    { name: 'Màn hình chính', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600' },
+                    { name: 'Hệ thống Design System', img: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1600' }
                 ]
             }
         ];
 
-        let currentActiveProject = null;
-        let currentItemIndex = 0;
-        let currentZoom = 1;
-        let panX = 0;
-        let panY = 0;
-
-        // Render Portfolio
-        function renderPortfolio(filter = 'Tất cả') {
+        // Khởi tạo các hàm cơ bản render giao diện
+        function renderProjects(filter = 'All') {
             const grid = document.getElementById('projectsGrid');
             grid.innerHTML = '';
-
-            const filtered = filter === 'Tất cả' 
-                ? CONFIG_DATA 
-                : CONFIG_DATA.filter(p => p.category === filter);
-
-            filtered.forEach((project, idx) => {
+            
+            CONFIG_DATA.forEach((proj, index) => {
+                if(filter !== 'All' && proj.category !== filter) return;
+                
                 const card = document.createElement('div');
                 card.className = 'project-card';
                 card.innerHTML = `
-                    <div class="card-number-stamp">0${idx + 1}</div>
-                    <div class="project-img-wrapper" onclick="openLightbox('${project.id}', 0)">
-                        <img src="${project.coverImg}" class="project-img" alt="${project.title}" loading="lazy">
+                    <div class="card-number-stamp">0${index + 1}</div>
+                    <div class="project-img-wrapper" onclick="openLightbox('${proj.id}', 0)">
+                        <img src="${proj.coverImg}" class="project-img" alt="${proj.title}">
                     </div>
                     <div class="project-header">
-                        <div class="project-meta">${project.category}</div>
-                        <h3 class="project-title" onclick="openCaseStudy('${project.id}')">${project.title}</h3>
+                        <span class="project-meta">${proj.category}</span>
+                        <h3 class="project-title" onclick="openModal('${proj.title}', '${proj.client}', '${proj.year}', '${proj.category}', '${proj.desc}')">${proj.title}</h3>
                     </div>
                     <div class="project-body">
                         <ul class="items-list">
-                            ${project.items.map((it, i) => `<li><button class="item-tag-btn" onclick="openLightbox('${project.id}', ${i})">${it.name}</button></li>`).join('')}
+                            ${proj.items.map((item, i) => `<li><button class="item-tag-btn" onclick="openLightbox('${proj.id}', ${i})">${item.name}</button></li>`).join('')}
                         </ul>
-                        <button class="btn-case-study" onclick="openCaseStudy('${project.id}')">Xem Chi Tiết Dự Án</button>
+                        <button class="btn-case-study" onclick="openModal('${proj.title}', '${proj.client}', '${proj.year}', '${proj.category}', '${proj.desc}')">Xem Case Study</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // Setup Filter Buttons
-        function setupFilters() {
-            const categories = ['Tất cả', ...new Set(CONFIG_DATA.map(p => p.category))];
+        // Render bộ lọc
+        function renderFilters() {
             const container = document.getElementById('filterContainer');
-            container.innerHTML = '';
-
-            categories.forEach((cat, idx) => {
-                const btn = document.createElement('button');
-                btn.className = `filter-btn ${idx === 0 ? 'active' : ''}`;
-                btn.textContent = cat;
-                btn.onclick = () => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    renderPortfolio(cat);
-                };
-                container.appendChild(btn);
-            });
-        }
-
-        // Lightbox Logic
-        function openLightbox(projectId, itemIndex) {
-            currentActiveProject = CONFIG_DATA.find(p => p.id === projectId);
-            if (!currentActiveProject) return;
-            currentItemIndex = itemIndex;
-            resetZoom();
+            const categories = ['All', ...new Set(CONFIG_DATA.map(p => p.category))];
             
-            document.getElementById('lightbox').classList.add('active');
-            updateLightboxContent();
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            currentActiveProject = null;
-        }
-
-        function handleBackgroundClick(e) {
-            if (e.target.id === 'lightbox') {
-                closeLightbox();
-            }
-        }
-
-        function changeLightboxImage(direction) {
-            if (!currentActiveProject) return;
-            const itemsLength = currentActiveProject.items.length;
-            currentItemIndex = (currentItemIndex + direction + itemsLength) % itemsLength;
-            resetZoom();
-            updateLightboxContent();
-        }
-
-        function updateLightboxContent() {
-            if (!currentActiveProject) return;
-            const currentItem = currentActiveProject.items[currentItemIndex];
-            
-            const imgElement = document.getElementById('lightboxImg');
-            imgElement.src = currentItem.img;
-            
-            document.getElementById('lightboxCaption').textContent = `${currentActiveProject.title} — ${currentItem.name} (${currentItemIndex + 1}/${currentActiveProject.items.length})`;
-
-            // Thumbs
-            const thumbsContainer = document.getElementById('lightboxThumbs');
-            thumbsContainer.innerHTML = currentActiveProject.items.map((it, i) => `
-                <img src="${it.img}" class="thumb-img ${i === currentItemIndex ? 'active' : ''}" onclick="jumpToLightboxItem(${i})" alt="thumb">
+            container.innerHTML = categories.map((cat, idx) => `
+                <button class="filter-btn ${idx === 0 ? 'active' : ''}" onclick="filterCategory('${cat}', this)">${cat}</button>
             `).join('');
         }
 
-        function jumpToLightboxItem(index) {
-            currentItemIndex = index;
-            resetZoom();
-            updateLightboxContent();
-        }
-
-        // --- HỆ THỐNG THU PHÓNG (ZOOM & PAN) ---
-        function updateTransform() {
-            const imgElement = document.getElementById('lightboxImg');
-            imgElement.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
-        }
-
-        function adjustZoom(amount) {
-            currentZoom = Math.max(1, Math.min(4, currentZoom + amount));
-            if (currentZoom === 1) { panX = 0; panY = 0; }
-            updateTransform();
-        }
-
-        function resetZoom() {
-            currentZoom = 1;
-            panX = 0;
-            panY = 0;
-            updateTransform();
-        }
-
-        // Zoom bằng con lăn chuột
-        const swipeArea = document.getElementById('swipeArea');
-        swipeArea.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const zoomStep = 0.2;
-            if (e.deltaY < 0) {
-                currentZoom = Math.min(4, currentZoom + zoomStep);
-            } else {
-                currentZoom = Math.max(1, currentZoom - zoomStep);
-            }
-            if (currentZoom === 1) { panX = 0; panY = 0; }
-            updateTransform();
-        }, { passive: false });
-
-        // Kéo chuột di chuyển ảnh khi đang zoom / chuyển ảnh (Drag & Swipe)
-        let startX = 0;
-        let startY = 0;
-        let initialPanX = 0;
-        let initialPanY = 0;
-        let isDragging = false;
-        let dragStartX = 0;
-
-        swipeArea.addEventListener('pointerdown', (e) => {
-            if (e.target.classList.contains('lb-btn') || e.target.classList.contains('thumb-img') || e.target.closest('.zoom-toolbar')) return;
-            isDragging = true;
-            dragStartX = e.clientX;
-            startX = e.clientX;
-            startY = e.clientY;
-            initialPanX = panX;
-            initialPanY = panY;
-            swipeArea.setPointerCapture(e.pointerId);
-        });
-
-        swipeArea.addEventListener('pointermove', (e) => {
-            if (!isDragging) return;
-            if (currentZoom > 1) {
-                panX = initialPanX + (e.clientX - startX);
-                panY = initialPanY + (e.clientY - startY);
-                updateTransform();
-            } else {
-                const diffX = e.clientX - dragStartX;
-                const lightboxImg = document.getElementById('lightboxImg');
-                lightboxImg.style.transform = `translateX(${diffX}px)`;
-            }
-        });
-
-        swipeArea.addEventListener('pointerup', (e) => {
-            if (!isDragging) return;
-            isDragging = false;
-            swipeArea.releasePointerCapture(e.pointerId);
-
-            if (currentZoom === 1) {
-                const diffX = e.clientX - dragStartX;
-                const threshold = 70;
-                if (diffX < -threshold) {
-                    changeLightboxImage(1);
-                } else if (diffX > threshold) {
-                    changeLightboxImage(-1);
-                } else {
-                    updateTransform();
-                }
-            }
-        });
-
-        swipeArea.addEventListener('pointercancel', () => {
-            isDragging = false;
-            updateTransform();
-        });
-
-        // Bắt sự kiện bàn phím
-        window.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            const isLightboxActive = lightbox.classList.contains('active');
-
-            if (e.key === 'Escape') {
-                closeLightbox();
-                closeModal();
-            }
-
-            if (isLightboxActive) {
-                if (e.key === 'ArrowLeft' && currentZoom === 1) {
-                    changeLightboxImage(-1);
-                } else if (e.key === 'ArrowRight' && currentZoom === 1) {
-                    changeLightboxImage(1);
-                } else if (e.key === '+' || e.key === '=') {
-                    adjustZoom(0.25);
-                } else if (e.key === '-' || e.key === '_') {
-                    adjustZoom(-0.25);
-                }
-            }
-        });
-
-        // Case Study Modal
-        function openCaseStudy(projectId) {
-            const project = CONFIG_DATA.find(p => p.id === projectId);
-            if (!project) return;
-
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalClient').textContent = project.client;
-            document.getElementById('modalYear').textContent = project.year;
-            document.getElementById('modalCategory').textContent = project.category;
-            document.getElementById('modalDesc').textContent = project.desc + ' Quy trình triển khai tập trung vào việc nghiên cứu sâu sắc hành vi khách hàng, xây dựng hệ thống lưới nhận diện nhất quán, kết hợp cùng kỹ thuật xử lý màu sắc và typographic sắc nét nhằm tạo ra bản sắc thương hiệu vững chãi trên thị trường.';
-
-            document.getElementById('caseStudyModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('caseStudyModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Theme / Color Switcher
-        function setFullTheme(accentColor, darkBgColor, gradientString) {
-            document.documentElement.style.setProperty('--accent-orange', accentColor);
-            document.documentElement.style.setProperty('--bg-dark', darkBgColor);
-            document.documentElement.style.setProperty('--bg-ambient-gradient', gradientString);
-            
-            if(accentColor === '#ef4444') document.documentElement.style.setProperty('--accent-orange-hover', '#b91c1c');
-            else if(accentColor === '#6366f1') document.documentElement.style.setProperty('--accent-orange-hover', '#4f46e5');
-            else document.documentElement.style.setProperty('--accent-orange-hover', '#0284c7');
-        }
-
-        function toggleLightDarkMode() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const toggleBtn = document.getElementById('modeToggleBtn');
-
-            if (currentTheme === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                toggleBtn.textContent = '🌙 Tối';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                toggleBtn.textContent = '☀️ Sáng';
-            }
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProjects(cat);
         }
 
         function scrollToTop(e) {
@@ -1026,11 +762,92 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Khởi chạy khi load trang
-        window.addEventListener('DOMContentLoaded', () => {
-            setupFilters();
-            renderPortfolio();
-        });
+        function setFullTheme(color, bgDark, ambientGrad) {
+            document.documentElement.style.setProperty('--accent-orange', color);
+            document.documentElement.style.setProperty('--bg-dark', bgDark);
+            document.documentElement.style.setProperty('--bg-ambient-gradient', ambientGrad);
+        }
+
+        function toggleLightDarkMode() {
+            const html = document.documentElement;
+            const btn = document.getElementById('modeToggleBtn');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                btn.textContent = '🌙 Tối';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ Sáng';
+            }
+        }
+
+        // Modal Controls
+        function openModal(title, client, year, category, desc) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalClient').textContent = client;
+            document.getElementById('modalYear').textContent = year;
+            document.getElementById('modalCategory').textContent = category;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('caseStudyModal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('caseStudyModal').classList.remove('active');
+        }
+
+        // Lightbox đơn giản để trang chạy hoàn thiện
+        let currentProjId = null, currentIndex = 0, currentScale = 1;
+        function openLightbox(projId, itemIndex) {
+            currentProjId = projId;
+            currentIndex = itemIndex;
+            currentScale = 1;
+            updateLightboxContent();
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        function updateLightboxContent() {
+            const proj = CONFIG_DATA.find(p => p.id === currentProjId);
+            if(!proj) return;
+            const item = proj.items[currentIndex];
+            document.getElementById('lightboxImg').src = item.img;
+            document.getElementById('lightboxCaption').textContent = item.name;
+            document.getElementById('lightboxImg').style.transform = `scale(${currentScale})`;
+            
+            // Render thumbs
+            const thumbsContainer = document.getElementById('lightboxThumbs');
+            thumbsContainer.innerHTML = proj.items.map((it, idx) => `
+                <img src="${it.img}" class="thumb-img ${idx === currentIndex ? 'active' : ''}" onclick="switchLightboxItem(${idx})">
+            `).join('');
+        }
+        function switchLightboxItem(idx) {
+            currentIndex = idx;
+            currentScale = 1;
+            updateLightboxContent();
+        }
+        function changeLightboxImage(direction) {
+            const proj = CONFIG_DATA.find(p => p.id === currentProjId);
+            if(!proj) return;
+            currentIndex = (currentIndex + direction + proj.items.length) % proj.items.length;
+            currentScale = 1;
+            updateLightboxContent();
+        }
+        function adjustZoom(amount) {
+            currentScale = Math.max(1, Math.min(3, currentScale + amount));
+            document.getElementById('lightboxImg').style.transform = `scale(${currentScale})`;
+        }
+        function resetZoom() {
+            currentScale = 1;
+            document.getElementById('lightboxImg').style.transform = `scale(1)`;
+        }
+        function handleBackgroundClick(e) {
+            if(e.target.id === 'lightbox') closeLightbox();
+        }
+
+        // Chạy lần đầu
+        window.onload = () => {
+            renderFilters();
+            renderProjects('All');
+        };
     </script>
 </body>
 </html>
