@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#09090b">
+<meta name="theme-color" content="#09090b" id="themeColorMeta">
+<meta name="color-scheme" content="dark light">
 <meta name="description" content="Portfolio thiết kế đồ họa của Vũ Trường Giang — Branding, Packaging, Key Visual, UI/UX và Art Direction.">
 <title>Vũ Trường Giang — Graphic Designer</title>
 
@@ -25,6 +26,29 @@
   --accent:#8fca00; --accent-2:#73a500; --accent-ink:#101500;
   --shadow:0 24px 70px rgba(0,0,0,.10);
 }
+/* THEME SYSTEM */
+:root{--accent-rgb:200 255 54;--accent-soft:rgba(200,255,54,.12)}
+[data-accent="blue"]{--accent:#55b7ff;--accent-2:#2d8fda;--accent-ink:#06111a;--accent-rgb:85 183 255;--accent-soft:rgba(85,183,255,.13)}
+[data-accent="violet"]{--accent:#a78bfa;--accent-2:#7c5ce5;--accent-ink:#120b1f;--accent-rgb:167 139 250;--accent-soft:rgba(167,139,250,.13)}
+[data-accent="coral"]{--accent:#ff7f6e;--accent-2:#e75b4b;--accent-ink:#1e0906;--accent-rgb:255 127 110;--accent-soft:rgba(255,127,110,.13)}
+[data-accent="amber"]{--accent:#ffc857;--accent-2:#e3a51f;--accent-ink:#1c1202;--accent-rgb:255 200 87;--accent-soft:rgba(255,200,87,.14)}
+[data-accent="cyan"]{--accent:#43e6d2;--accent-2:#19b9a7;--accent-ink:#031615;--accent-rgb:67 230 210;--accent-soft:rgba(67,230,210,.13)}
+[data-accent="pink"]{--accent:#ff6fb5;--accent-2:#dd438c;--accent-ink:#210713;--accent-rgb:255 111 181;--accent-soft:rgba(255,111,181,.13)}
+.theme-launcher{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);padding:9px 13px;border-radius:999px;font-size:.78rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.theme-launcher:hover{background:var(--surface-3);border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.theme-panel{position:fixed;right:22px;top:78px;width:min(330px,calc(100vw - 28px));padding:18px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;box-shadow:var(--shadow);z-index:1200;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transition:.2s}
+.theme-panel.active{opacity:1;visibility:visible;transform:none}
+.theme-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.theme-panel-title{font-family:"Space Grotesk";font-weight:700;font-size:1rem}.theme-close{width:34px;height:34px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:50%;cursor:pointer}
+.theme-mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.mode-choice{border:1px solid var(--line);background:var(--surface-2);color:var(--muted);padding:10px 8px;border-radius:13px;cursor:pointer;font-size:.74rem;font-weight:700}
+.mode-choice.active{border-color:var(--accent);background:var(--accent-soft);color:var(--text)}
+.color-label{font-size:.7rem;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px}
+.color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+.color-choice{aspect-ratio:1;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.color-choice.active{border-color:var(--text);transform:scale(1.08)}
+.color-choice[data-accent="lime"]{background:#c8ff36}.color-choice[data-accent="blue"]{background:#55b7ff}.color-choice[data-accent="violet"]{background:#a78bfa}.color-choice[data-accent="coral"]{background:#ff7f6e}.color-choice[data-accent="amber"]{background:#ffc857}.color-choice[data-accent="cyan"]{background:#43e6d2}.color-choice[data-accent="pink"]{background:#ff6fb5}
+.theme-hint{font-size:.68rem;color:var(--muted);margin-top:13px;line-height:1.45}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:"DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;overflow-x:hidden;transition:.25s}
@@ -191,6 +215,9 @@ footer{padding:26px 0 105px;color:var(--muted);font-size:.72rem;display:flex;jus
   .contact-box{align-items:start;flex-direction:column}.contact-actions{justify-content:flex-start}
 }
 @media(max-width:680px){
+  .theme-launcher span.label{display:none}
+  .theme-launcher{width:40px;height:40px;padding:0;justify-content:center}
+  .theme-panel{right:10px;top:auto;bottom:82px;width:calc(100vw - 20px)}
   .container{width:min(var(--max),calc(100% - 24px))}
   .site-header{top:10px;width:calc(100% - 20px);padding:8px 8px 8px 14px}
   .nav,.site-header>.header-btn{display:none}.menu-btn{display:block}
@@ -216,9 +243,31 @@ footer{padding:26px 0 105px;color:var(--muted);font-size:.72rem;display:flex;jus
   <nav class="nav" aria-label="Điều hướng chính">
     <a href="#work">Dự án</a><a href="#about">Về tôi</a><a href="#contact">Liên hệ</a>
   </nav>
-  <a class="header-btn" href="mailto:gvu2883@gmail.com">Let's talk ↗</a>
-  <button class="menu-btn" id="themeBtn" aria-label="Đổi giao diện">☾</button>
+  <div style="display:flex;align-items:center;gap:8px">
+    <a class="header-btn" href="mailto:gvu2883@gmail.com">Let's talk ↗</a>
+    <button class="theme-launcher" id="themeLauncher" aria-label="Mở cài đặt giao diện" aria-expanded="false"><span id="themeIcon">☾</span><span class="label">Giao diện</span></button>
+  </div>
 </header>
+
+<div class="theme-panel" id="themePanel" role="dialog" aria-label="Cài đặt giao diện">
+  <div class="theme-panel-head"><div class="theme-panel-title">Giao diện website</div><button class="theme-close" id="themeClose" aria-label="Đóng">×</button></div>
+  <div class="theme-mode-grid" role="group" aria-label="Chế độ sáng tối">
+    <button class="mode-choice" data-mode="light">☀️ Sáng</button>
+    <button class="mode-choice" data-mode="dark">🌙 Tối</button>
+    <button class="mode-choice" data-mode="auto">◐ Tự động</button>
+  </div>
+  <div class="color-label">Màu chủ đạo</div>
+  <div class="color-grid" role="group" aria-label="Chọn màu chủ đạo">
+    <button class="color-choice" data-accent="lime" aria-label="Xanh lime"></button>
+    <button class="color-choice" data-accent="blue" aria-label="Xanh dương"></button>
+    <button class="color-choice" data-accent="violet" aria-label="Tím violet"></button>
+    <button class="color-choice" data-accent="coral" aria-label="Cam coral"></button>
+    <button class="color-choice" data-accent="amber" aria-label="Vàng amber"></button>
+    <button class="color-choice" data-accent="cyan" aria-label="Xanh cyan"></button>
+    <button class="color-choice" data-accent="pink" aria-label="Hồng pink"></button>
+  </div>
+  <p class="theme-hint">Thiết lập được lưu trên thiết bị. Chế độ “Tự động” sẽ theo giao diện sáng/tối của hệ điều hành khi bạn chưa chọn thủ công.</p>
+</div>
 
 <main id="top">
 <section class="hero">
@@ -282,7 +331,7 @@ footer{padding:26px 0 105px;color:var(--muted);font-size:.72rem;display:flex;jus
         <h2>Let's make something <em>memorable.</em></h2>
       </div>
       <div class="contact-actions">
-        <a class="btn btn-primary" href="mailto:gvu2883@gmail.com">Email ↗</a>
+        <a class="btn btn-primary" href="mailto:gvu2883@gmail.com">✉ Email ↗</a>
         <a class="btn btn-ghost" href="https://zalo.me/0339836152" target="_blank" rel="noopener">Zalo ↗</a>
       </div>
     </div>
@@ -291,12 +340,13 @@ footer{padding:26px 0 105px;color:var(--muted);font-size:.72rem;display:flex;jus
 </main>
 
 <footer class="container">
-  <div>© 2026 VŨ TRƯỜNG GIANG</div><div class="footer-right">Graphic Designer · Vietnam</div>
+  <div>© 2026 VŨ TRƯỜNG GIANG</div>
+  <div class="footer-right"><a href="mailto:gvu2883@gmail.com">Email</a> · <a href="https://zalo.me/0339836152" target="_blank" rel="noopener">Zalo</a> · Graphic Designer · Vietnam</div>
 </footer>
 
 <nav class="mobile-nav" aria-label="Điều hướng mobile">
   <a href="#top"><span>⌂</span>Home</a><a href="#work"><span>✦</span>Work</a>
-  <a href="#about"><span>◎</span>About</a><a href="#contact"><span>↗</span>Contact</a>
+  <a href="#about"><span>◎</span>About</a><a href="#contact"><span>↗</span>Contact</a><a href="javascript:void(0)" id="mobileThemeBtn"><span>◐</span>Theme</a>
 </nav>
 
 <div class="overlay" id="modalOverlay" aria-hidden="true">
@@ -458,13 +508,42 @@ let touchX=0;
 $('#lbImage').addEventListener('touchstart',e=>touchX=e.changedTouches[0].clientX,{passive:true});
 $('#lbImage').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>45)moveImage(dx<0?1:-1)},{passive:true});
 
-const saved=localStorage.getItem('giang-theme');
-if(saved)document.documentElement.dataset.theme=saved;
-$('#themeBtn').onclick=()=>{
-  const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
-  document.documentElement.dataset.theme=next;localStorage.setItem('giang-theme',next);$('#themeBtn').textContent=next==='dark'?'☾':'☀';
-};
-$('#themeBtn').textContent=document.documentElement.dataset.theme==='dark'?'☾':'☀';
+// Theme + accent system: works on desktop and mobile
+const root=document.documentElement;
+const themePanel=$('#themePanel');
+const themeLauncher=$('#themeLauncher');
+const themeIcon=$('#themeIcon');
+const savedMode=localStorage.getItem('giang-theme-mode') || 'auto';
+const savedAccent=localStorage.getItem('giang-accent') || 'lime';
+root.dataset.accent=savedAccent;
+function systemTheme(){return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+function applyTheme(mode){
+  const actual=mode==='auto'?systemTheme():mode;
+  root.dataset.theme=actual;
+  root.dataset.themeMode=mode;
+  localStorage.setItem('giang-theme-mode',mode);
+  themeIcon.textContent=actual==='dark'?'☾':'☀';
+  document.querySelectorAll('.mode-choice').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+  const meta=$('#themeColorMeta');
+  if(meta)meta.setAttribute('content',getComputedStyle(root).getPropertyValue('--bg').trim() || (actual==='dark'?'#08090b':'#f5f5f2'));
+}
+function applyAccent(accent){
+  root.dataset.accent=accent;
+  localStorage.setItem('giang-accent',accent);
+  document.querySelectorAll('.color-choice').forEach(b=>b.classList.toggle('active',b.dataset.accent===accent));
+  const meta=$('#themeColorMeta');
+  if(meta)requestAnimationFrame(()=>meta.setAttribute('content',getComputedStyle(root).getPropertyValue('--bg').trim()));
+}
+applyTheme(savedMode);applyAccent(savedAccent);
+themeLauncher.onclick=()=>{const open=!themePanel.classList.contains('active');themePanel.classList.toggle('active',open);themeLauncher.setAttribute('aria-expanded',String(open));};
+$('#themeClose').onclick=()=>{themePanel.classList.remove('active');themeLauncher.setAttribute('aria-expanded','false')};
+$('#mobileThemeBtn').onclick=()=>{themePanel.classList.toggle('active');themeLauncher.setAttribute('aria-expanded',String(themePanel.classList.contains('active')))};
+document.querySelectorAll('.mode-choice').forEach(b=>b.onclick=()=>applyTheme(b.dataset.mode));
+document.querySelectorAll('.color-choice').forEach(b=>b.onclick=()=>applyAccent(b.dataset.accent));
+document.addEventListener('click',e=>{if(themePanel.classList.contains('active')&&!themePanel.contains(e.target)&&!themeLauncher.contains(e.target)&&!$('#mobileThemeBtn').contains(e.target)){themePanel.classList.remove('active');themeLauncher.setAttribute('aria-expanded','false')}});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(root.dataset.themeMode==='auto')applyTheme('auto')});
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')themePanel.classList.remove('active')});
 
 renderFilters();renderProjects();
 </script>
